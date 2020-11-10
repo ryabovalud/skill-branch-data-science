@@ -26,7 +26,7 @@ def gradient_optimization_one_dim(f):
         x -= eps*F
     return round(x, 2)
 
- def gradient_optimization_multi_dim(f):
+def gradient_optimization_multi_dim(f):
     eps = 0.0001
     delta = 0.0001
     for i in range(50):
