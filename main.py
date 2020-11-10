@@ -4,9 +4,8 @@ def derivation(x, f):
     return round(F, 2)
 
 def gradient(list_X, f):
-
     values = []
-    delta = 0.0001
+    delta = 0.000001
     x1 = list_X[0]
     x2 = list_X[1]
     # dF/dx1 подставляем в функцию значения x2
@@ -28,7 +27,7 @@ def gradient_optimization_one_dim(f):
 
 def gradient_optimization_multi_dim(f):
     eps = 0.0001
-    delta = 0.0001
+    delta = 0.000001
     for i in range(50):
         if i == 0:
             x1, x2 = 4, 10   
