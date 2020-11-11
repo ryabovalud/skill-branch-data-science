@@ -1,12 +1,14 @@
+
 def derivation(x, f):
     delta = 0.0001
     F = (f(x+delta) - f(x))/delta
     return round(F, 2)
 
+from copy import deepcopy
 def gradient(list_X, f):
     values = []
     delta = 0.000000001
-    x_copy = deepcopy(x)
+    x_copy = deepcopy(list_X)
     for indx, x_ in enumerate(x):
         x_copy[indx] = x_copy[indx] + delta
         values.append(round(f(x_copy), 2))
