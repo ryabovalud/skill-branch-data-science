@@ -9,7 +9,7 @@ def gradient(list_X, f):
     values = []
     delta = 0.000000001
     x_copy = deepcopy(list_X)
-    for indx, x_ in enumerate(x):
+    for indx, x_ in enumerate(list_X):
         x_copy[indx] = x_copy[indx] + delta
         values.append(round(f(x_copy), 2))
         x_copy = deepcopy(x)
