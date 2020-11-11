@@ -12,7 +12,7 @@ def gradient(list_X, f):
     for indx, x_ in enumerate(list_X):
         x_copy[indx] = x_copy[indx] + delta
         values.append(round(f(x_copy), 2))
-        x_copy = deepcopy(x)
+        x_copy = deepcopy(list_X)
     return values
 
 def gradient_optimization_one_dim(f):
