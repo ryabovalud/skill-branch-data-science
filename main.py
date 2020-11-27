@@ -8,9 +8,10 @@ from copy import deepcopy
 def gradient(list_X, f):
     values = []
     delta = 0.000000001
-    x_copy = deepcopy(list_X)
-    values.append(round(f([list_X[0]+delta, list_X[1]]), 2))
-    values.append(round(f([list_X[0], list_X[1]+delta]), 2))
+    F = (f([x1+delta, x2]) - f([x1, x2]))/(2*delta)
+    values.append(round(F, 2))
+    F = (f([x1, x2+delta]) - f([x1, x2]))/(2*delta)
+    values.append(round(F, 2))
     return values
 
 def gradient_optimization_one_dim(f):
