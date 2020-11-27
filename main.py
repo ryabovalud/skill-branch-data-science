@@ -8,6 +8,8 @@ from copy import deepcopy
 def gradient(list_X, f):
     values = []
     delta = 0.000000001
+    x1 = list_X[0]
+    x2 = list_X[1]
     F = (f([x1+delta, x2]) - f([x1, x2]))/(2*delta)
     values.append(round(F, 2))
     F = (f([x1, x2+delta]) - f([x1, x2]))/(2*delta)
