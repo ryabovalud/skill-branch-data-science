@@ -33,7 +33,7 @@ def gradient_optimization_multi_dim(f):
         if i == 0:
             x1, x2 = 4, 10   
         F1 = round((f([x1+delta, x2]) - f([x1, x2]))/delta,2)
-        F2 = (f([x1, x2+delta]) - f([x1, x2]))/delta,2
+        F2 = f([x1, x2+delta]) - f([x1, x2]))/delta
         x1 -= round(eps*F1,2)
         x2 -= eps*F2
     values = []
