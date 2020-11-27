@@ -10,9 +10,9 @@ def gradient(list_X, f):
     delta = 0.000000001
     x1 = list_X[0]
     x2 = list_X[1]
-    F = (f([x1+delta, x2]) - f([x1, x2]))/(2*delta)
+    F = (f([x1+delta, x2]) - f([x1, x2]))/delta
     values.append(round(F, 2))
-    F = (f([x1, x2+delta]) - f([x1, x2]))/(2*delta)
+    F = (f([x1, x2+delta]) - f([x1, x2]))/delta
     values.append(round(F, 2))
     return values
 
@@ -32,8 +32,8 @@ def gradient_optimization_multi_dim(f):
     for i in range(50):
         if i == 0:
             x1, x2 = 4, 10   
-        F1 = f([x1+delta, x2])
-        F2 = f([x1, x2+delta])
+        F1 = (f([x1+delta, x2]) - f([x1, x2]))/delta
+        F2 = (f([x1, x2+delta]) - f([x1, x2]))/delta
         x1 -= eps*F1
         x2 -= eps*F2
     values = []
