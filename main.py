@@ -4,17 +4,23 @@ def derivation(x, f):
     F = (f(x+delta) - f(x))/delta
     return round(F, 2)
 
-from copy import deepcopy
-def gradient(list_X, f):
-    values = []
-    delta = 0.000000001
-    x1 = list_X[0]
-    x2 = list_X[1]
-    F = (f([x1+delta, x2]) - f([x1, x2]))/delta
-    values.append(round(F, 2))
-    F = (f([x1, x2+delta]) - f([x1, x2]))/delta
-    values.append(round(F, 2))
-    return values
+def gradient_internal(point, function):
+    x = point[0]
+    y = point[1]
+    fxy = function([x, y])
+
+    dx = 0.00001
+    df_dx = (function([x + dx, y]) - fxy) / dx
+
+    dy = 0.00001
+    df_dy = (function([x, y + dy]) - fxy) / dy
+
+    return [df_dx, df_dy]
+
+
+def gradient(point, function):
+    g = gradient_internal(point, function)
+    return [round(g[0], 2), round(g[1], 2)]
 
 def gradient_optimization_one_dim(f):
     eps = 0.001
@@ -26,17 +32,17 @@ def gradient_optimization_one_dim(f):
         x -= eps*F
     return round(x, 2)
 
-def gradient_optimization_multi_dim(f):
-    eps = 0.0001
-    delta = 0.000001
-    for i in range(50):
-        if i == 0:
-            x1, x2 = 4, 10   
-        F1 = (f([x1+delta, x2]) - f([x1, x2]))/delta
-        F2 = (f([x1, x2+delta]) - f([x1, x2]))/delta
-        x1 -= round(eps*F1,2)
-        x2 -= round(eps*F2,2)
-    values = []
-    values.append(round(x1, 2))
-    values.append(round(x2, 2))
-    return values
+
+
+def gradient_optimization_multi_dim(function):
+    x = 4
+    y = 10
+    epsilon = 0.001
+    for step in range(50):
+        g = gradient([x, y], function)
+        x = x - round(epsilon * g[0], 2)
+        y = y - round(epsilon * g[1], 2)
+    x = round(x, 2)
+    y = round(y, 2)
+    return [x, y]
+
