@@ -18,13 +18,15 @@ def calculate_target_ratio(X, target_name):
 #написать функцию `calculate_data_dtypes`, которая принимает на вход датафрейм 
 #`X` и возвращает количество числовых признаков и категориальных признаков. Категориальные признаки имеют тип `object`.
 def calculate_data_dtypes(X):
-    return X.dtypes.value_counts()
+    data = X.dtypes.value_counts()
+    return data[0] + data[1], data[2]
 
 # Задание 5
 #написать функцию `calculate_cheap_apartment`, которая принимает на вход датафрейм 
 #`X` и возвращает количество квартир, стоимость которых меньше 1 млн .рублей.
 def calculate_cheap_apartment(X):
-    return len(X[X['price_doc'] < 1000000])
+    cheap = X[X['price_doc']<1000000]
+    return cheap['id'].count()
 
 # Задание 6
 #написать функцию `calculate_squad_in_cheap_apartment`, которая принимает на вход датафрейм `X` 
@@ -32,7 +34,7 @@ def calculate_cheap_apartment(X):
 #Признак, отвечающий за площадь - `full_sq`. Ответ округлить целого значения.
 def calculate_squad_in_cheap_apartment(X):
     cheap = X[X['price_doc']<1000000]
-    return int(cheap['full_sq'].mean())
+    return round(cheap['full_sq'].mean())
     
 # Задание 7
 # написать функцию `calculate_mean_price_in_new_housing`, которая принимает на вход датафрейм `X` 
@@ -53,8 +55,8 @@ def calculate_mean_squared_by_num_rooms(X):
 # написать функцию `calculate_squared_stats_by_material`, которая принимает на вход датафрейм `X` и возвращает максимальную 
 # и минимальную площадь квартир в зависимости от материала изготовления дома. Каждое значение площади округлить до 2-го знака.
 def calculate_squared_stats_by_material(X):
-    X_min = X.groupby('product_type')['full_sq'].min()
-    X_max = X.groupby('product_type')['full_sq'].max()
+    X_min = X.groupby('material')['full_sq'].min()
+    X_max = X.groupby('material')['full_sq'].max()
     return round(X_min, 2), round(X_max,2)
 
 # Задание 10
