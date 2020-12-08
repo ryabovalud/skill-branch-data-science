@@ -39,7 +39,7 @@ def calculate_squad_in_cheap_apartment(X):
 # написать функцию `calculate_mean_price_in_new_housing`, которая принимает на вход датафрейм `X` 
 # и возвращает среднюю стоимость трехкомнатных квартир в доме, который не страше 2010 года. Ответ округлить до целого значения.
 def calculate_mean_price_in_new_housing(X):
-    return int(X.query('num_room == 3 & build_year>=2010')['price_doc'])
+    return int(X.query('num_room == 3 & build_year>=2010')['price_doc'].mean())
 
 
 # Задание 8
