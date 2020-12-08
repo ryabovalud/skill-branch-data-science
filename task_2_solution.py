@@ -20,7 +20,7 @@ def calculate_target_ratio(X, target_name):
 def calculate_data_dtypes(X):
     ints = X.select_dtypes(include=['float64', 'int64']).dtypes.count()
     objects = x.select_dtypes(include=['object']).dtypes.count()
-    return [ints, objects]
+    return ints, objects
 
 # Задание 5
 #написать функцию `calculate_cheap_apartment`, которая принимает на вход датафрейм 
@@ -33,7 +33,7 @@ def calculate_cheap_apartment(X):
 #и возвращает среднюю площадь квартир, стоимость которых меньше 1 млн .рублей. 
 #Признак, отвечающий за площадь - `full_sq`. Ответ округлить целого значения.
 def calculate_squad_in_cheap_apartment(X):
-    return X[X['price_doc']<1000000]['full_sq'].mean()
+    return round(X[X['price_doc']<1000000]['full_sq'].mean())
     
 # Задание 7
 # написать функцию `calculate_mean_price_in_new_housing`, которая принимает на вход датафрейм `X` 
@@ -55,7 +55,7 @@ def calculate_mean_squared_by_num_rooms(X):
 def calculate_squared_stats_by_material(X):
     X_min = X.groupby('material')['full_sq'].min()
     X_max = X.groupby('material')['full_sq'].max()
-    return [round(X_min,2), round(X_max,2)]
+    return round(X_min,2), round(X_max,2)
 
 # Задание 10
 # написать функцию `calculate_crosstab`, которая принимает на вход датафрейм X и возвращает максимальную и минимальную стоимость 
