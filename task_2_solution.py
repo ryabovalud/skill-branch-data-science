@@ -53,9 +53,10 @@ def calculate_mean_squared_by_num_rooms(X):
 # написать функцию `calculate_squared_stats_by_material`, которая принимает на вход датафрейм `X` и возвращает максимальную 
 # и минимальную площадь квартир в зависимости от материала изготовления дома. Каждое значение площади округлить до 2-го знака.
 def calculate_squared_stats_by_material(X):
-    X_min = X.groupby('material')['full_sq'].min()
-    X_max = X.groupby('material')['full_sq'].max()
-    return pd.DataFrame(zip(round(X_min, 2),round(X_max,2)))
+    X_ = X.pivot_table(index='material', 
+                       aggfunc={'full_sq': [max, min]}, fill_value=0)
+    X_['full_sq'] = round(X_['full_sq'], 2)
+    return X_
 
 # Задание 10
 # написать функцию `calculate_crosstab`, которая принимает на вход датафрейм X и возвращает максимальную и минимальную стоимость 
