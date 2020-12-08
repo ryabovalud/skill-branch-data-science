@@ -55,7 +55,7 @@ def calculate_mean_squared_by_num_rooms(X):
 def calculate_squared_stats_by_material(X):
     X_min = X.groupby('material')['full_sq'].min()
     X_max = X.groupby('material')['full_sq'].max()
-    return round(X_min,2), round(X_max,2)
+    return pd.DataFrame(zip(round(X_min, 2),round(X_max,2)))
 
 # Задание 10
 # написать функцию `calculate_crosstab`, которая принимает на вход датафрейм X и возвращает максимальную и минимальную стоимость 
