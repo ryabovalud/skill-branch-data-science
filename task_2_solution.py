@@ -1,3 +1,6 @@
+import pandas as pd
+import numpy as np
+
 # Задание 1
 # написать функцию `calculate_data_shape`, которая принимает на вход датафрейм `X` и возвращает его размерность
 def calculate_data_shape(X):
@@ -33,13 +36,13 @@ def calculate_cheap_apartment(X):
 #и возвращает среднюю площадь квартир, стоимость которых меньше 1 млн .рублей. 
 #Признак, отвечающий за площадь - `full_sq`. Ответ округлить целого значения.
 def calculate_squad_in_cheap_apartment(X):
-    return int(X[X['price_doc']<=1000000]['full_sq'].mean())
+    return round(X[X['price_doc']<=1000000]['full_sq'].mean())
     
 # Задание 7
 # написать функцию `calculate_mean_price_in_new_housing`, которая принимает на вход датафрейм `X` 
 # и возвращает среднюю стоимость трехкомнатных квартир в доме, который не страше 2010 года. Ответ округлить до целого значения.
 def calculate_mean_price_in_new_housing(X):
-    return int(X.query('num_room == 3 & build_year>=2010')['price_doc'].mean())
+    return round(X.query('num_room == 3 & build_year>=2010')['price_doc'].mean())
 
 
 # Задание 8
