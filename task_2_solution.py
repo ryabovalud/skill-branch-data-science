@@ -52,19 +52,15 @@ def calculate_mean_squared_by_num_rooms(X):
 # Задание 9
 # написать функцию `calculate_squared_stats_by_material`, которая принимает на вход датафрейм `X` и возвращает максимальную 
 # и минимальную площадь квартир в зависимости от материала изготовления дома. Каждое значение площади округлить до 2-го знака.
-def calculate_squared_stats_by_material(X):
-    X_ = X.pivot_table(index='material', 
-                       aggfunc={'full_sq': [max, min]}, fill_value=0)
-    X_['full_sq'] = round(X_['full_sq'], 2)
-    return X_
+def calculate_squared_stats_by_material(x):
+    pivot_table = pd.pivot_table(x, index=['material'], values='full_sq', aggfunc=[np.min, np.max])
+    return np.round(pivot_table, 2)
 
 # Задание 10
 # написать функцию `calculate_crosstab`, которая принимает на вход датафрейм X и возвращает максимальную и минимальную стоимость 
 # квартир в зависимости от района города и цели покупки. 
 # Ответ - сводная таблица, где индекс - район города (признак - `sub_area`),
 # столбцы - цель покупки (признак - `product_type`). Каждое значение цены округлить до 2-го знака, пропуски заполнить нулем.
-def calculate_crosstab(X):
-    X_ = X.pivot_table(index='sub_area', columns='product_type', 
-                       aggfunc={'price_doc': [max, min]}, fill_value=0)
-    X_['price_doc'] = round(X_['price_doc'], 2)
-    return X_
+def calculate_crosstab(x):
+    pivot_table = pd.pivot_table(x, index=['sub_area', 'product_type'], values='price_doc', aggfunc=[np.min, np.max], fill_value=0)
+    return np.round(pivot_table, 2)
